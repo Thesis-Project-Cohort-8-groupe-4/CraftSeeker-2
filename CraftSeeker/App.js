@@ -1,29 +1,25 @@
-import { StatusBar } from 'expo-status-bar';
-import { useState } from 'react';
-import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import DashBoard from './components/workers/DashBoard/DashBoard';
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import Authentication from './components/screens/Authentication';
+import Background from '../CraftSeeker/components/screens/shared/Background';
+import SignUpWorker from './components/screens/workers/SignUpWorker';
+import SignUpClient from "../CraftSeeker/components/screens/client/SignUpClient"
+import Dashboard from './components/screens/workers/DashBoard/Dashboard';
+import WorkerProfil from './components/screens/workers/Profile';
+
+const Stack = createStackNavigator();
 
 export default function App() {
-  const dummy = ["a", "b", "d", "c", "e", "a", "ez", "aze"];
-  const [data, setData] = useState(dummy);
-
   return (
-    <View style={styles.container}>
-      <Text>life is shit</Text>
-      <StatusBar style="auto" />
-      <ScrollView>
-      <DashBoard></DashBoard>
-      </ScrollView>
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Authentication" component={Authentication} />
+        <Stack.Screen name="SignUpWorker" component={SignUpWorker} />
+        <Stack.Screen name="SignUpClient" component={SignUpClient} />
+        <Stack.Screen name="Dashboard" component={Dashboard} />
+        <Stack.Screen name="WorkerProfil" component={WorkerProfil} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    marginLeft: 33,
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'flex-start',
-    justifyContent: 'center',
-  },
-});
